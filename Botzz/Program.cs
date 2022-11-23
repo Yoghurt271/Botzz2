@@ -24,19 +24,14 @@ namespace Botzz
 
             Console.WriteLine("Здраствуйте " + name);
 
-            Console.WriteLine("Что бы узнать что может бот напишите *Help*");
+            Console.WriteLine("Что бы узнать что может бот напишите *помощь*");
             string textUser = "";
             while (textUser != "Выход")
             {
                 textUser = Console.ReadLine();
                 switch (textUser.ToLower())
                 {
-                    case "help":
-                        Console.WriteLine("Что бы узнать погоду напишите: *Погода*");
-                        Console.WriteLine("Что бы узнать время и дату напишите: *Дата*");
-                        Console.WriteLine("Что бы выйти напишите: *Выход*");
-                        break;
-
+                  
                     case "погода":
                         HtmlNodeCollection links = document.DocumentNode.SelectNodes("/html/body/section[2]/div[1]/section[3]/div/div[3]/span[1]");
                         HtmlNodeCollection descrip = document.DocumentNode.SelectNodes("/html/body/section[2]/div[1]/section[3]/div/div[5]");
@@ -66,6 +61,16 @@ namespace Botzz
 
                     case "выход":
                         Console.WriteLine("До свидания " + name);
+                        break;
+
+                    case "помощь":
+                        Console.WriteLine("Что бы узнать погоду напишите: *Погода*");
+                        Console.WriteLine("Что бы узнать время и дату напишите: *Дата*");
+                        Console.WriteLine("Что бы выйти напишите: *Выход*");
+                        break;
+
+                    default: 
+                        Console.WriteLine("Что бы узнать команды бота напишите: *помощь*");
                         break;
 
                 }
