@@ -13,9 +13,9 @@ namespace Botzz
             Action();
         }
 
-        static void Action()
+        static void Action() // Действия бота
         {
-            string pageContent = LoadPage(url: @"https://www.gismeteo.ru/weather-vladimir-4350/now/");
+            string pageContent = LoadPage(url: @"https://www.gismeteo.ru/weather-vladimir-4350/now/"); // Загрузка страницы для погоды
             var document = new HtmlDocument();
             document.LoadHtml(pageContent);
 
@@ -26,14 +26,14 @@ namespace Botzz
 
             Console.WriteLine("Что бы узнать что может бот напишите *помощь*");
             string textUser = "";
-            while (textUser != "Выход")
+            while (textUser.ToLower() != "выход") // Заканчивает програму только после слова выход
             {
                 textUser = Console.ReadLine();
                 switch (textUser.ToLower())
                 {
                   
                     case "погода":
-                        HtmlNodeCollection links = document.DocumentNode.SelectNodes("/html/body/section[2]/div[1]/section[3]/div/div[3]/span[1]");
+                        HtmlNodeCollection links = document.DocumentNode.SelectNodes("/html/body/section[2]/div[1]/section[3]/div/div[3]/span[1]"); // Парсинг
                         HtmlNodeCollection descrip = document.DocumentNode.SelectNodes("/html/body/section[2]/div[1]/section[3]/div/div[5]");
                         if (links != null)
                         {
@@ -79,7 +79,7 @@ namespace Botzz
 
         }
 
-        static string LoadPage(string url)
+        static string LoadPage(string url)// Метод чтение данных с сайта
         {
             var result = "";
             var request = (HttpWebRequest)WebRequest.Create(url);
